@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>J. Muster — Mechatronics Engineer</title>
+<meta name="description" content="A portfolio of mechatronics engineering projects — mechanical design, electronics, and embedded software.">
+<style>
+
+  @font-face{
+    font-family:'Klarheit';
+    src:url('fonts/ESKlarheitGrotesk-Rg.ttf') format('truetype');
+    font-weight:400;
+    font-style:normal;
+    font-display:swap;
+  }
+
+  @font-face{
+    font-family:'Klarheit';
+    src:url('fonts/ESKlarheitGrotesk-It.ttf') format('truetype');
+    font-weight:400;
+    font-style:italic;
+    font-display:swap;
+  }
+
+  @font-face{
+    font-family:'Klarheit';
+    src:url('fonts/ESKlarheitGrotesk-Xbd.ttf') format('truetype');
+    font-weight:800;
+    font-style:normal;
+    font-display:swap;
+  }
+
+  :root{
+    --paper: #FAFAF8;
+    --ink: #121316;
+    --steel: #6E7278;
+    --line: #E2E3DE;
+    --accent: #2B4C6F;
+    --accent-bright: #4A7FA8;
+    --card-bg: #FFFFFF;
+  }
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+
+  html{ scroll-behavior:smooth; }
+
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Klarheit', sans-serif;
+    font-size:16px;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  h1,h2,h3, .display{
+    font-family:'Klarheit', sans-serif;
+    font-weight:800;
+    letter-spacing:-0.015em;
+    line-height:1.03;
+  }
+
+  .mono{
+    font-family:'Klarheit', sans-serif;
+    letter-spacing:0.02em;
+  }
+
+  a{ color:inherit; text-decoration:none; }
+
+  img{ display:block; max-width:100%; }
+
+  .wrap{
+    max-width:1240px;
+    margin:0 auto;
+    padding:0 32px;
+  }
+
+  @media (max-width:640px){
+    .wrap{ padding:0 20px; }
+  }
+
+  /* ---------- Divider ---------- */
+
+  .divider{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    padding:28px 0;
+    color:var(--steel);
+    font-family:'Klarheit', sans-serif;
+    font-size:0.8rem;
+    letter-spacing:0.15em;
+  }
+
+  /* ---------- Header ---------- */
+
+  header{
+    position:sticky;
+    top:0;
+    z-index:50;
+    background:rgba(250,250,248,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+
+  .header-inner{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:22px 32px;
+    max-width:1240px;
+    margin:0 auto;
+    flex-wrap:wrap;
+    gap:10px;
+  }
+
+  .brand{
+    font-family:'Klarheit', sans-serif;
+    font-weight:800;
+    font-size:1rem;
+    text-transform:uppercase;
+    letter-spacing:0.04em;
+  }
+
+  .brand span{
+    color:var(--steel);
+    font-weight:500;
+    font-size:0.78rem;
+    text-transform:none;
+    letter-spacing:0;
+    display:block;
+    margin-top:3px;
+    font-family:'Klarheit', sans-serif;
+  }
+
+  nav{
+    display:flex;
+    gap:30px;
+    font-size:0.82rem;
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+  }
+
+  nav a{
+    color:var(--steel);
+    border-bottom:1px solid transparent;
+    padding-bottom:2px;
+    transition:color .15s ease, border-color .15s ease;
+  }
+
+  nav a:hover{
+    color:var(--ink);
+    border-color:var(--ink);
+  }
+
+  /* ---------- Hero ---------- */
+
+  .hero{
+    padding:110px 0 64px;
+    border-bottom:1px solid var(--line);
+  }
+
+  .hero-content{
+    max-width:920px;
+  }
+
+  .hero .eyebrow{
+    font-family:'Klarheit', sans-serif;
+    font-size:0.8rem;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin-bottom:22px;
+    display:block;
+  }
+
+  .hero h1{
+    font-size:clamp(2.4rem, 6vw, 4.4rem);
+    margin-bottom:32px;
+  }
+
+  .hero h1 .dim{ color:var(--steel); }
+  .hero h1 .accent-text{ color:var(--accent); }
+
+  .hero p{
+    font-size:1.1rem;
+    color:#3B3F44;
+    max-width:540px;
+    margin-bottom:36px;
+  }
+
+  .hero-meta{
+    display:flex;
+    gap:36px;
+    flex-wrap:wrap;
+    font-size:0.85rem;
+    color:var(--steel);
+  }
+
+  .hero-meta div span{
+    display:block;
+    color:var(--ink);
+    font-family:'Klarheit', sans-serif;
+    font-size:0.95rem;
+    margin-top:2px;
+  }
+
+  /* ---------- Projects ---------- */
+
+  .projects{
+    padding:56px 0 40px;
+  }
+
+  .section-head{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    margin-bottom:36px;
+  }
+
+  .section-head h2{ font-size:1.4rem; }
+
+  .section-head .count{
+    color:var(--steel);
+    font-family:'Klarheit', sans-serif;
+    font-size:0.85rem;
+  }
+
+  .project-list{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:72px;
+  }
+
+  /* ---- shared slideshow ---- */
+
+  .slide-viewport{
+    position:relative;
+    width:100%;
+    background:
+      repeating-linear-gradient(135deg, #ECEDE8, #ECEDE8 10px, #F2F3EE 10px, #F2F3EE 20px);
+    overflow:hidden;
+    border:1px solid var(--line);
+  }
+
+  .slide{
+    position:absolute;
+    inset:0;
+    display:none;
+  }
+
+  .slide.active{ display:block; }
+
+  .slide img, .slide video{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+  }
+
+  .placeholder-label{
+    position:absolute;
+    inset:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:'Klarheit', sans-serif;
+    font-size:0.75rem;
+    color:#7A7F76;
+    text-align:center;
+    padding:0 16px;
+  }
+
+  .arrow{
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    z-index:3;
+    width:38px;
+    height:38px;
+    border-radius:50%;
+    border:1px solid var(--line);
+    background:rgba(255,255,255,0.9);
+    color:var(--ink);
+    font-family:'Klarheit', sans-serif;
+    font-size:1.1rem;
+    line-height:1;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition:background .15s ease, border-color .15s ease;
+  }
+
+  .arrow:hover{
+    background:var(--ink);
+    color:var(--paper);
+    border-color:var(--ink);
+  }
+
+  .arrow.prev{ left:14px; }
+  .arrow.next{ right:14px; }
+
+  .dots{
+    position:absolute;
+    bottom:12px;
+    left:0;
+    right:0;
+    z-index:3;
+    display:flex;
+    justify-content:center;
+    gap:7px;
+  }
+
+  .dot{
+    width:6px;
+    height:6px;
+    border-radius:50%;
+    background:rgba(255,255,255,0.55);
+    border:1px solid rgba(18,19,22,0.35);
+    cursor:pointer;
+    padding:0;
+  }
+
+  .dot.active{ background:var(--ink); border-color:var(--ink); }
+
+  .tile-tag{
+    font-family:'Klarheit', sans-serif;
+    font-size:0.72rem;
+    color:var(--accent);
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+  }
+
+  .desc{
+    color:var(--steel);
+    font-size:0.9rem;
+  }
+
+  /* ---- big / featured project ---- */
+
+  .project-feature{
+    width:100%;
+    max-width:860px;
+  }
+
+  .project-feature .slide-viewport{ aspect-ratio: 16 / 9; }
+
+  .project-caption{
+    margin-top:22px;
+    text-align:center;
+  }
+
+  .project-caption h3{
+    font-size:1.7rem;
+    margin:8px 0 8px;
+  }
+
+  .project-caption .desc{
+    max-width:56ch;
+    margin:0 auto;
+  }
+
+  /* ---- small project row ---- */
+
+  .project-row{
+    width:100%;
+    display:flex;
+    justify-content:center;
+    gap:28px;
+    flex-wrap:wrap;
+  }
+
+  .project-small{
+    flex:1 1 280px;
+    max-width:320px;
+  }
+
+  .project-small .slide-viewport{ aspect-ratio: 4 / 3; }
+
+  .project-small .arrow{
+    width:30px;
+    height:30px;
+    font-size:0.95rem;
+  }
+
+  .project-small .arrow.prev{ left:8px; }
+  .project-small .arrow.next{ right:8px; }
+
+  .project-small-caption{
+    margin-top:14px;
+  }
+
+  .project-small-caption h3{
+    font-size:1.05rem;
+    margin:6px 0 4px;
+  }
+
+  .project-small-caption .desc{
+    font-size:0.85rem;
+  }
+
+  /* ---------- About ---------- */
+
+  .about{
+    padding:80px 0;
+    border-top:1px solid var(--line);
+    margin-top:40px;
+    display:grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap:48px;
+  }
+
+  @media (max-width:760px){
+    .about{ grid-template-columns:1fr; }
+  }
+
+  .about-photo{
+    position:relative;
+    width:132px;
+    height:132px;
+    flex-shrink:0;
+    border-radius:50%;
+    background:
+      repeating-linear-gradient(135deg, #ECEDE8, #ECEDE8 10px, #F2F3EE 10px, #F2F3EE 20px);
+    border:1px solid var(--line);
+    overflow:hidden;
+  }
+
+  .about-photo img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+  }
+
+  .about-photo .placeholder-label{
+    font-size:0.62rem;
+    padding:0 14px;
+    line-height:1.3;
+  }
+
+  .about-body{
+    display:flex;
+    align-items:flex-start;
+    gap:32px;
+  }
+
+  .about-text{
+    padding-left:16px;
+  }
+
+  @media (max-width:520px){
+    .about-body{ flex-direction:column; }
+    .about-text{ padding-left:0; }
+  }
+
+  .about h2{ font-size:1.4rem; margin-bottom:16px; }
+
+  .about p{ color:#3B3F44; margin-bottom:16px; max-width:56ch; }
+
+  .skills-list{
+    list-style:none;
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-top:20px;
+  }
+
+  .skills-list li{
+    font-family:'Klarheit', sans-serif;
+    font-size:0.8rem;
+    border:1px solid var(--line);
+    padding:6px 12px;
+    color:var(--steel);
+  }
+
+  /* ---------- Contact / Footer ---------- */
+
+  footer{
+    border-top:1px solid var(--line);
+    padding:56px 0 40px;
+  }
+
+  .footer-inner{
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:24px;
+  }
+
+  footer h2{ font-size:1.6rem; margin-bottom:8px; }
+
+  footer .links{
+    display:flex;
+    gap:24px;
+    flex-wrap:wrap;
+    font-size:0.92rem;
+  }
+
+  footer .links a{
+    color:var(--accent);
+    border-bottom:1px solid var(--accent);
+  }
+
+  footer .links a:hover{ color:var(--accent-bright); border-color:var(--accent-bright); }
+
+  .copyright{
+    margin-top:40px;
+    font-family:'Klarheit', sans-serif;
+    font-size:0.75rem;
+    color:var(--steel);
+  }
+
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="brand">Margarete Breitenhuber<span>Mechatronics engineer</span></div>
+    <nav>
+      <a href="#work">Work</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-content">
+    <span class="eyebrow">Mechatronics — mechanical / electronics / software</span>
+    <h1>I design machines that <span class="accent-text">sense</span>, <span class="accent-text">move</span> and <span class="accent-text">think</span>. <span class="dim">Seven projects, sketch to working system.</span></h1>
+    <p>A collection of mechatronics work spanning CAD and mechanical design, electronics and PCB layout, and the embedded software that ties it together — with the tools and process behind each build.</p>
+    <div class="hero-meta">
+      <div>Based in<span>Zürich, CH</span></div>
+      <div>Focus<span>Mechatronic systems</span></div>
+      <div>Tools<span>SolidWorks, Altium, Embedded C</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap"><div class="divider">* * *</div></div>
+
+<section class="projects wrap" id="work">
+  <div class="section-head">
+    <h2>Selected work</h2>
+  </div>
+
+  <div class="project-list">
+
+    <!-- Project 1 - big, featured -->
+    <article class="project-feature">
+      <div class="slide-viewport">
+        <div class="slide active">
+          <img src="images/project-1-1.jpg" alt="Replace with a photo of Project 1" onerror="this.style.display='none';">
+        </div>
+        <div class="slide">
+          <video src="images/project-1-2.mov" muted loop playsinline onerror="this.style.display='none';"></video>
+        </div>
+        <div class="slide">
+          <img src="images/project-1-3.png" alt="Replace with a photo of Project 1" onerror="this.style.display='none';">
+        </div>
+        <button class="arrow prev" aria-label="Previous image">‹</button>
+        <button class="arrow next" aria-label="Next image">›</button>
+        <div class="dots">
+          <button class="dot active" aria-label="Go to image 1"></button>
+          <button class="dot" aria-label="Go to image 2"></button>
+          <button class="dot" aria-label="Go to image 3"></button>
+        </div>
+      </div>
+      <div class="project-caption">
+        <span class="tile-tag">Neura Robotics GmbH</span>
+        <h3>Winner of European-wide Challenge</h3>
+        <p class="desc">Collaborative robot to assist visually impaired users — custom soft gripper and tactile sensors for reliable, adaptive grasping, paired with vision-language AI for semantic object detection and grip planning.</p>
+      </div>
+    </article>
+
+    <!-- Project 2 - big, featured -->
+    <article class="project-feature">
+      <div class="slide-viewport">
+        <div class="slide active">
+          <img src="images/project-2-1.jpg" alt="Replace with a photo of Project 2" onerror="this.style.display='none';">
+        </div>
+        <div class="slide">
+          <img src="images/project-2-2.jpg" alt="Replace with a photo of Project 2" onerror="this.style.display='none';">
+        </div>
+        <div class="slide">
+          <img src="images/project-2-3.jpg" alt="Replace with a photo of Project 2" onerror="this.style.display='none';">
+        </div>
+        <button class="arrow prev" aria-label="Previous image">‹</button>
+        <button class="arrow next" aria-label="Next image">›</button>
+        <div class="dots">
+          <button class="dot active" aria-label="Go to image 1"></button>
+          <button class="dot" aria-label="Go to image 2"></button>
+          <button class="dot" aria-label="Go to image 3"></button>
+        </div>
+      </div>
+      <div class="project-caption">
+        <span class="tile-tag">ETH Zürich</span>
+        <h3>Agroscan</h3>
+        <p class="desc">Replace this with a 1–2 sentence description: what the project was, the problem it solved, and your role in it.</p>
+      </div>
+    </article>
+
+    <!-- Project 3 - big, featured -->
+    <article class="project-feature">
+      <div class="slide-viewport">
+        <div class="slide active">
+          <img src="images/project-3-1.jpg" alt="Replace with a photo of Project 3" onerror="this.style.display='none';">
+        </div>
+        <div class="slide">
+          <img src="images/project-3-2.jpg" alt="Replace with a photo of Project 3" onerror="this.style.display='none';">
+        </div>
+        <div class="slide">
+          <img src="images/project-3-3.jpg" alt="Replace with a photo of Project 3" onerror="this.style.display='none';">
+        </div>
+        <button class="arrow prev" aria-label="Previous image">‹</button>
+        <button class="arrow next" aria-label="Next image">›</button>
+        <div class="dots">
+          <button class="dot active" aria-label="Go to image 1"></button>
+          <button class="dot" aria-label="Go to image 2"></button>
+          <button class="dot" aria-label="Go to image 3"></button>
+        </div>
+      </div>
+      <div class="project-caption">
+        <span class="tile-tag">National University of Singapore</span>
+        <h3>Semester Project</h3>
+        <p class="desc">Replace this with a 1–2 sentence description: what the project was, the problem it solved, and your role in it.</p>
+      </div>
+    </article>
+
+    <!-- Projects 4-6 - small row -->
+    <div class="project-row">
+
+      <article class="project-small">
+        <div class="slide-viewport">
+          <div class="slide active">
+            <img src="images/project-4-1.jpg" alt="Replace with a photo of Project 4" onerror="this.style.display='none';">
+          </div>
+          <div class="slide">
+            <img src="images/project-4-2.jpg" alt="Replace with a photo of Project 4" onerror="this.style.display='none';">
+          </div>
+          <div class="slide">
+            <img src="images/project-4-3.jpg" alt="Replace with a photo of Project 4" onerror="this.style.display='none';">
+          </div>
+          <button class="arrow prev" aria-label="Previous image">‹</button>
+          <button class="arrow next" aria-label="Next image">›</button>
+          <div class="dots">
+            <button class="dot active" aria-label="Go to image 1"></button>
+            <button class="dot" aria-label="Go to image 2"></button>
+            <button class="dot" aria-label="Go to image 3"></button>
+          </div>
+        </div>
+        <div class="project-small-caption">
+          <span class="tile-tag">ZhdK</span>
+          <h3>Bike Pump</h3>
+          <p class="desc">Short description of the project goal, your approach, and the outcome.</p>
+        </div>
+      </article>
+
+      <article class="project-small">
+        <div class="slide-viewport">
+          <div class="slide active">
+            <img src="images/project-5-1.jpg" alt="Replace with a photo of Project 5" onerror="this.style.display='none';">
+          </div>
+          <div class="slide">
+            <img src="images/project-5-2.jpg" alt="Replace with a photo of Project 5" onerror="this.style.display='none';">
+          </div>
+          <div class="slide">
+            <img src="images/project-5-3.jpg" alt="Replace with a photo of Project 5" onerror="this.style.display='none';">
+          </div>
+          <button class="arrow prev" aria-label="Previous image">‹</button>
+          <button class="arrow next" aria-label="Next image">›</button>
+          <div class="dots">
+            <button class="dot active" aria-label="Go to image 1"></button>
+            <button class="dot" aria-label="Go to image 2"></button>
+            <button class="dot" aria-label="Go to image 3"></button>
+          </div>
+        </div>
+        <div class="project-small-caption">
+          <span class="tile-tag">Karlsruhe Institute of Technology</span>
+          <h3>Hyperloop</h3>
+          <p class="desc">Short description of the project goal, your approach, and the outcome.</p>
+        </div>
+      </article>
+
+      <article class="project-small">
+        <div class="slide-viewport">
+          <div class="slide active">
+            <img src="images/project-6-1.jpg" alt="Replace with a photo of Project 6" onerror="this.style.display='none';">
+          </div>
+          <div class="slide">
+            <img src="images/project-6-2.jpg" alt="Replace with a photo of Project 6" onerror="this.style.display='none';">
+          </div>
+          <div class="slide">
+            <img src="images/project-6-3.jpg" alt="Replace with a photo of Project 6" onerror="this.style.display='none';">
+          </div>
+          <button class="arrow prev" aria-label="Previous image">‹</button>
+          <button class="arrow next" aria-label="Next image">›</button>
+          <div class="dots">
+            <button class="dot active" aria-label="Go to image 1"></button>
+            <button class="dot" aria-label="Go to image 2"></button>
+            <button class="dot" aria-label="Go to image 3"></button>
+          </div>
+        </div>
+        <div class="project-small-caption">
+          <span class="tile-tag">Airbus Helicopters</span>
+          <h3>Airbus</h3>
+          <p class="desc">Short description of the project goal, your approach, and the outcome.</p>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- Project 7 - big, featured -->
+    <article class="project-feature">
+      <div class="slide-viewport">
+        <div class="slide active">
+          <img src="images/project-7-1.jpg" alt="Replace with a photo of Project 7" onerror="this.style.display='none';">
+        </div>
+        <div class="slide">
+          <img src="images/project-7-2.jpg" alt="Replace with a photo of Project 7" onerror="this.style.display='none';">
+        </div>
+        <div class="slide">
+          <img src="images/project-7-3.jpg" alt="Replace with a photo of Project 7" onerror="this.style.display='none';">
+        </div>
+        <button class="arrow prev" aria-label="Previous image">‹</button>
+        <button class="arrow next" aria-label="Next image">›</button>
+        <div class="dots">
+          <button class="dot active" aria-label="Go to image 1"></button>
+          <button class="dot" aria-label="Go to image 2"></button>
+          <button class="dot" aria-label="Go to image 3"></button>
+        </div>
+      </div>
+      <div class="project-caption">
+        <span class="tile-tag">Caterra AG</span>
+        <h3>Caterra</h3>
+        <p class="desc">Replace this with a 1–2 sentence description: what the project was, the problem it solved, and your role in it.</p>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<div class="wrap"><div class="divider">* * *</div></div>
+
+<section class="about wrap" id="about">
+  <div>
+    <h2>About</h2>
+  </div>
+  <div>
+    <div class="about-body">
+      <div class="about-photo">
+        <img src="images/profile.jpg" alt="Replace with your profile photo" onerror="this.style.display='none';">
+      </div>
+      <div class="about-text">
+        <p>Replace this with a short paragraph about yourself — your background, what you're currently studying or working on, and what kind of mechatronic systems you're drawn to.</p>
+        <p>A second paragraph is optional: mention any notable achievements, teams, or competitions.</p>
+      </div>
+    </div>
+    <ul class="skills-list">
+      <li>SolidWorks</li>
+      <li>Fusion 360</li>
+      <li>Altium Designer</li>
+      <li>Embedded C / C++</li>
+      <li>ROS</li>
+      <li>CNC machining</li>
+      <li>3D printing</li>
+      <li>FEA</li>
+    </ul>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap footer-inner">
+    <div>
+      <h2>Get in touch</h2>
+      <p style="color:var(--steel); max-width:40ch;">Open to internships, collaborations, and questions about any of these builds.</p>
+    </div>
+    <div class="links">
+      <a href="mailto:margarete.breitenhuber@gmx.de">Email</a>
+      <a href="https://github.com/mbreitenhuber">GitHub</a>
+      <a href="https://www.linkedin.com/in/margarete-breitenhuber/">LinkedIn</a>
+    </div>
+  </div>
+  <div class="wrap copyright">© 2026 Margarete Breitenhuber — built and hosted on GitHub Pages</div>
+</footer>
+
+<script>
+  (function(){
+    document.querySelectorAll('.slide-viewport').forEach(function(viewport){
+      var slides = Array.prototype.slice.call(viewport.querySelectorAll('.slide'));
+      var dots = Array.prototype.slice.call(viewport.querySelectorAll('.dot'));
+      var index = 0;
+
+      function show(i){
+        index = (i + slides.length) % slides.length;
+        slides.forEach(function(s, idx){
+          var isActive = idx === index;
+          s.classList.toggle('active', isActive);
+          var video = s.querySelector('video');
+          if(video){
+            if(isActive){ video.play().catch(function(){}); }
+            else { video.pause(); }
+          }
+        });
+        dots.forEach(function(d, idx){ d.classList.toggle('active', idx === index); });
+      }
+
+      var prev = viewport.querySelector('.arrow.prev');
+      var next = viewport.querySelector('.arrow.next');
+      if(prev) prev.addEventListener('click', function(){ show(index - 1); });
+      if(next) next.addEventListener('click', function(){ show(index + 1); });
+      dots.forEach(function(d, idx){
+        d.addEventListener('click', function(){ show(idx); });
+      });
+
+      show(0);
+    });
+  })();
+</script>
+
+</body>
+</html>
