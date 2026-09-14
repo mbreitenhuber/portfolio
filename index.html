@@ -260,6 +260,14 @@
     object-fit:cover;
   }
 
+  .slide-viewport.contain-slides{
+    background:#FFFFFF;
+  }
+
+  .contain-slides .slide img, .contain-slides .slide video{
+    object-fit:contain;
+  }
+
   .placeholder-label{
     position:absolute;
     inset:0;
@@ -339,6 +347,25 @@
     font-size:0.9rem;
   }
 
+  .pub-note{
+    margin-top:10px;
+    font-family:'Klarheit', sans-serif;
+    font-size:0.75rem;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--accent);
+  }
+
+  .pub-note a{
+    border-bottom:1px solid var(--accent);
+    transition:color .15s ease, border-color .15s ease;
+  }
+
+  .pub-note a:hover{
+    color:var(--accent-bright);
+    border-color:var(--accent-bright);
+  }
+
   /* ---- big / featured project ---- */
 
   .project-feature{
@@ -350,17 +377,31 @@
 
   .project-caption{
     margin-top:22px;
-    text-align:center;
+    width:100%;
   }
 
-  .project-caption h3{
+  .project-caption-head{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:20px;
+  }
+
+  .project-caption-head h3{
     font-size:1.7rem;
-    margin:8px 0 8px;
+  }
+
+  .project-caption-head .tile-tag{
+    white-space:nowrap;
   }
 
   .project-caption .desc{
-    max-width:56ch;
-    margin:0 auto;
+    margin-top:10px;
+    max-width:none;
+  }
+
+  @media (max-width:520px){
+    .project-caption-head{ flex-direction:column; gap:4px; }
   }
 
   /* ---- small project row ---- */
@@ -571,8 +612,10 @@
         </div>
       </div>
       <div class="project-caption">
-        <span class="tile-tag">Neura Robotics GmbH</span>
-        <h3>Winner of European-wide Challenge</h3>
+        <div class="project-caption-head">
+          <h3>Winner of European-wide Robotics Challenge</h3>
+          <span class="tile-tag">Neura Robotics GmbH</span>
+        </div>
         <p class="desc">Collaborative robot to assist visually impaired users — custom soft gripper and tactile sensors for reliable, adaptive grasping, paired with vision-language AI for semantic object detection and grip planning.</p>
       </div>
     </article>
@@ -598,36 +641,37 @@
         </div>
       </div>
       <div class="project-caption">
-        <span class="tile-tag">ETH Zürich</span>
-        <h3>Agroscan</h3>
+        <div class="project-caption-head">
+          <h3>Agroscan</h3>
+          <span class="tile-tag">ETH Zürich</span>
+        </div>
         <p class="desc">Replace this with a 1–2 sentence description: what the project was, the problem it solved, and your role in it.</p>
       </div>
     </article>
 
     <!-- Project 3 - big, featured -->
     <article class="project-feature">
-      <div class="slide-viewport">
+      <div class="slide-viewport contain-slides">
         <div class="slide active">
-          <img src="images/project-3-1.jpg" alt="Replace with a photo of Project 3" onerror="this.style.display='none';">
+          <img src="images/project-3-1.png" alt="Replace with a photo of Project 3" onerror="this.style.display='none';">
         </div>
-        <div class="slide">
-          <img src="images/project-3-2.jpg" alt="Replace with a photo of Project 3" onerror="this.style.display='none';">
-        </div>
-        <div class="slide">
-          <img src="images/project-3-3.jpg" alt="Replace with a photo of Project 3" onerror="this.style.display='none';">
+        <div class="slide natural-size">
+          <img src="images/project-3-2.jpeg" alt="Replace with a photo of Project 3" onerror="this.style.display='none';">
         </div>
         <button class="arrow prev" aria-label="Previous image">‹</button>
         <button class="arrow next" aria-label="Next image">›</button>
         <div class="dots">
           <button class="dot active" aria-label="Go to image 1"></button>
           <button class="dot" aria-label="Go to image 2"></button>
-          <button class="dot" aria-label="Go to image 3"></button>
         </div>
       </div>
       <div class="project-caption">
-        <span class="tile-tag">National University of Singapore</span>
-        <h3>Semester Project</h3>
-        <p class="desc">Replace this with a 1–2 sentence description: what the project was, the problem it solved, and your role in it.</p>
+        <div class="project-caption-head">
+          <h3>Data-Driven Sensor Placement Optimization</h3>
+          <span class="tile-tag">National University of Singapore</span>
+        </div>
+        <p class="desc">Sensor placement optimization for a multilayer soft robotic skin — PCA-based deformation subspace identification paired with greedy selection algorithms, validated on a custom tendon-driven silicone arm with MuJoCo simulation and trajectory-tracking control for non-linear soft systems.</p>
+        <p class="pub-note">RoboSoft 2026 · Extended Abstract · <a href="https://github.com/mbreitenhuber/soft_robot_optimization" target="_blank" rel="noopener">View code</a></p>
       </div>
     </article>
 
@@ -735,8 +779,10 @@
         </div>
       </div>
       <div class="project-caption">
-        <span class="tile-tag">Caterra AG</span>
-        <h3>Caterra</h3>
+        <div class="project-caption-head">
+          <h3>Caterra</h3>
+          <span class="tile-tag">Caterra AG</span>
+        </div>
         <p class="desc">Replace this with a 1–2 sentence description: what the project was, the problem it solved, and your role in it.</p>
       </div>
     </article>
@@ -794,6 +840,31 @@
       var slides = Array.prototype.slice.call(viewport.querySelectorAll('.slide'));
       var dots = Array.prototype.slice.call(viewport.querySelectorAll('.dot'));
       var index = 0;
+      var fitsToImage = viewport.classList.contains('contain-slides');
+
+      function fitViewport(slide){
+        var media = slide.querySelector('img, video');
+        if(!media) return;
+
+        function applySize(){
+          var w = media.tagName === 'VIDEO' ? media.videoWidth : media.naturalWidth;
+          var h = media.tagName === 'VIDEO' ? media.videoHeight : media.naturalHeight;
+          if(!w || !h) return;
+          var maxW = viewport.parentElement.clientWidth;
+          var maxH = Math.min(640, window.innerHeight * 0.75);
+          var scale = Math.min(maxW / w, maxH / h);
+          viewport.style.width = Math.round(w * scale) + 'px';
+          viewport.style.height = Math.round(h * scale) + 'px';
+          viewport.style.margin = '0 auto';
+        }
+
+        var ready = media.tagName === 'VIDEO' ? media.readyState >= 1 : media.complete;
+        if(ready){ applySize(); }
+        else {
+          var evt = media.tagName === 'VIDEO' ? 'loadedmetadata' : 'load';
+          media.addEventListener(evt, applySize, { once:true });
+        }
+      }
 
       function show(i){
         index = (i + slides.length) % slides.length;
@@ -807,6 +878,21 @@
           }
         });
         dots.forEach(function(d, idx){ d.classList.toggle('active', idx === index); });
+        if(fitsToImage){
+          if(slides[index].classList.contains('natural-size')){
+            fitViewport(slides[index]);
+          } else {
+            viewport.style.width = '';
+            viewport.style.height = '';
+            viewport.style.margin = '';
+          }
+        }
+      }
+
+      if(fitsToImage){
+        window.addEventListener('resize', function(){
+          if(slides[index].classList.contains('natural-size')){ fitViewport(slides[index]); }
+        });
       }
 
       var prev = viewport.querySelector('.arrow.prev');
