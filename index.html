@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>J. Muster — Mechatronics Engineer</title>
+<title>M. Breitenhuber — Mechatronics Engineer</title>
 <meta name="description" content="A portfolio of mechatronics engineering projects — mechanical design, electronics, and embedded software.">
 <style>
 
@@ -158,7 +158,7 @@
   /* ---------- Hero ---------- */
 
   .hero{
-    padding:110px 0 64px;
+    padding:91px 0 45px;
     border-bottom:1px solid var(--line);
   }
 
@@ -177,7 +177,7 @@
   }
 
   .hero h1{
-    font-size:clamp(2.4rem, 6vw, 4.4rem);
+    font-size:clamp(2.1rem, 5vw, 3.6rem);
     margin-bottom:32px;
   }
 
@@ -216,7 +216,8 @@
   .section-head{
     display:flex;
     align-items:baseline;
-    justify-content:space-between;
+    justify-content:center;
+    text-align:center;
     margin-bottom:36px;
   }
 
@@ -232,7 +233,7 @@
     display:flex;
     flex-direction:column;
     align-items:center;
-    gap:72px;
+    gap:91px;
   }
 
   /* ---- shared slideshow ---- */
@@ -415,8 +416,8 @@
   }
 
   .project-small{
-    flex:1 1 280px;
-    max-width:320px;
+    flex:1 1 320px;
+    max-width:400px;
   }
 
   .project-small .slide-viewport{ aspect-ratio: 4 / 3; }
@@ -460,9 +461,10 @@
 
   .about-photo{
     position:relative;
-    width:132px;
-    height:132px;
+    width:196px;
+    height:196px;
     flex-shrink:0;
+    margin-left:-180px;
     border-radius:50%;
     background:
       repeating-linear-gradient(135deg, #ECEDE8, #ECEDE8 10px, #F2F3EE 10px, #F2F3EE 20px);
@@ -484,7 +486,7 @@
 
   .about-body{
     display:flex;
-    align-items:flex-start;
+    align-items:center;
     gap:32px;
   }
 
@@ -493,11 +495,11 @@
   }
 
   @media (max-width:520px){
-    .about-body{ flex-direction:column; }
+    .about-body{ flex-direction:column; align-items:flex-start; }
     .about-text{ padding-left:0; }
   }
 
-  .about h2{ font-size:1.4rem; margin-bottom:16px; }
+  .about h2{ font-size:1.4rem; margin-bottom:16px; text-align:center; }
 
   .about p{ color:#3B3F44; margin-bottom:16px; max-width:56ch; }
 
@@ -571,23 +573,12 @@
 
 <section class="hero">
   <div class="wrap hero-content">
-    <span class="eyebrow">Mechatronics — mechanical / electronics / software</span>
-    <h1>I design machines that <span class="accent-text">sense</span>, <span class="accent-text">move</span> and <span class="accent-text">think</span>. <span class="dim">Seven projects, sketch to working system.</span></h1>
-    <p>A collection of mechatronics work spanning CAD and mechanical design, electronics and PCB layout, and the embedded software that ties it together — with the tools and process behind each build.</p>
-    <div class="hero-meta">
-      <div>Based in<span>Zürich, CH</span></div>
-      <div>Focus<span>Mechatronic systems</span></div>
-      <div>Tools<span>SolidWorks, Altium, Embedded C</span></div>
-    </div>
+    <h1>Mechanics, electronics, code. <span class="dim">Sketch to working system.</span></h1>
+    <p>A selection of projects I worked on 2022-2026.</p>
   </div>
 </section>
 
-<div class="wrap"><div class="divider">* * *</div></div>
-
 <section class="projects wrap" id="work">
-  <div class="section-head">
-    <h2>Selected work</h2>
-  </div>
 
   <div class="project-list">
 
@@ -622,30 +613,27 @@
 
     <!-- Project 2 - big, featured -->
     <article class="project-feature">
-      <div class="slide-viewport">
-        <div class="slide active">
+      <div class="slide-viewport contain-slides">
+        <div class="slide active natural-size">
           <img src="images/project-2-1.jpg" alt="Replace with a photo of Project 2" onerror="this.style.display='none';">
         </div>
-        <div class="slide">
-          <img src="images/project-2-2.jpg" alt="Replace with a photo of Project 2" onerror="this.style.display='none';">
-        </div>
-        <div class="slide">
-          <img src="images/project-2-3.jpg" alt="Replace with a photo of Project 2" onerror="this.style.display='none';">
+        <div class="slide natural-size">
+          <img src="images/project-2-2.png" alt="Replace with a photo of Project 2" onerror="this.style.display='none';">
         </div>
         <button class="arrow prev" aria-label="Previous image">‹</button>
         <button class="arrow next" aria-label="Next image">›</button>
         <div class="dots">
           <button class="dot active" aria-label="Go to image 1"></button>
           <button class="dot" aria-label="Go to image 2"></button>
-          <button class="dot" aria-label="Go to image 3"></button>
         </div>
       </div>
       <div class="project-caption">
         <div class="project-caption-head">
-          <h3>Agroscan</h3>
+          <h3>AgroScan — Soil Carbon Monitoring</h3>
           <span class="tile-tag">ETH Zürich</span>
         </div>
-        <p class="desc">Replace this with a 1–2 sentence description: what the project was, the problem it solved, and your role in it.</p>
+        <p class="desc">Open-source web platform combining remote-sensing-based soil organic carbon prediction with visual analytics — giving farmers field-level SOC/SOM estimates and crop-rotation context to interpret long-term soil health trends and guide adaptive field management.</p>
+        <p class="pub-note">VIS4Climate 2026 · Short Paper · <a href="https://github.com/mbreitenhuber/soil_health_monitoring" target="_blank" rel="noopener">View code</a></p>
       </div>
     </article>
 
@@ -675,58 +663,61 @@
       </div>
     </article>
 
-    <!-- Projects 4-6 - small row -->
+    <!-- Project 4 - big, featured -->
+    <article class="project-feature">
+      <div class="slide-viewport contain-slides">
+        <div class="slide active">
+          <img src="images/project-4-1.png" alt="Replace with a photo of Project 4" onerror="this.style.display='none';">
+        </div>
+        <div class="slide natural-size">
+          <img src="images/project-4-2.jpg" alt="Replace with a photo of Project 4" onerror="this.style.display='none';">
+        </div>
+        <div class="slide">
+          <img src="images/project-4-3.jpg" alt="Replace with a photo of Project 4" onerror="this.style.display='none';">
+        </div>
+        <div class="slide">
+          <img src="images/project-4-4.jpg" alt="Replace with a photo of Project 4" onerror="this.style.display='none';">
+        </div>
+        <button class="arrow prev" aria-label="Previous image">‹</button>
+        <button class="arrow next" aria-label="Next image">›</button>
+        <div class="dots">
+          <button class="dot active" aria-label="Go to image 1"></button>
+          <button class="dot" aria-label="Go to image 2"></button>
+          <button class="dot" aria-label="Go to image 3"></button>
+          <button class="dot" aria-label="Go to image 4"></button>
+        </div>
+      </div>
+      <div class="project-caption">
+        <div class="project-caption-head">
+          <h3>Public Bike Pump</h3>
+          <span class="tile-tag">ZhdK</span>
+        </div>
+        <p class="desc">Public, vandalism-resistant mechanical bike pump designed to work reliably and stay fun to use — piston and scroll compressor concepts compared through prototyping, with crank position, column height, and grip geometry refined through user testing and validated with FEM simulation for force and pressure loads.</p>
+      </div>
+    </article>
+
+    <!-- Projects 5-6 - small row -->
     <div class="project-row">
 
       <article class="project-small">
         <div class="slide-viewport">
           <div class="slide active">
-            <img src="images/project-4-1.jpg" alt="Replace with a photo of Project 4" onerror="this.style.display='none';">
+            <img src="images/project-5-1.jpeg" alt="Replace with a photo of Project 5" onerror="this.style.display='none';">
           </div>
           <div class="slide">
-            <img src="images/project-4-2.jpg" alt="Replace with a photo of Project 4" onerror="this.style.display='none';">
-          </div>
-          <div class="slide">
-            <img src="images/project-4-3.jpg" alt="Replace with a photo of Project 4" onerror="this.style.display='none';">
+            <img src="images/project-5-2.jpeg" alt="Replace with a photo of Project 5" onerror="this.style.display='none';">
           </div>
           <button class="arrow prev" aria-label="Previous image">‹</button>
           <button class="arrow next" aria-label="Next image">›</button>
           <div class="dots">
             <button class="dot active" aria-label="Go to image 1"></button>
             <button class="dot" aria-label="Go to image 2"></button>
-            <button class="dot" aria-label="Go to image 3"></button>
-          </div>
-        </div>
-        <div class="project-small-caption">
-          <span class="tile-tag">ZhdK</span>
-          <h3>Bike Pump</h3>
-          <p class="desc">Short description of the project goal, your approach, and the outcome.</p>
-        </div>
-      </article>
-
-      <article class="project-small">
-        <div class="slide-viewport">
-          <div class="slide active">
-            <img src="images/project-5-1.jpg" alt="Replace with a photo of Project 5" onerror="this.style.display='none';">
-          </div>
-          <div class="slide">
-            <img src="images/project-5-2.jpg" alt="Replace with a photo of Project 5" onerror="this.style.display='none';">
-          </div>
-          <div class="slide">
-            <img src="images/project-5-3.jpg" alt="Replace with a photo of Project 5" onerror="this.style.display='none';">
-          </div>
-          <button class="arrow prev" aria-label="Previous image">‹</button>
-          <button class="arrow next" aria-label="Next image">›</button>
-          <div class="dots">
-            <button class="dot active" aria-label="Go to image 1"></button>
-            <button class="dot" aria-label="Go to image 2"></button>
-            <button class="dot" aria-label="Go to image 3"></button>
           </div>
         </div>
         <div class="project-small-caption">
           <span class="tile-tag">Karlsruhe Institute of Technology</span>
-          <h3>Hyperloop</h3>
-          <p class="desc">Short description of the project goal, your approach, and the outcome.</p>
+          <h3>Award-Winning Levitation System</h3>
+          <p class="desc">Suspension and braking systems for a full-scale hyperloop pod — electromagnets, brakes, and guidance components developed as technical lead, winning the award for best levitating guidance system at European Hyperloop Week 2023.</p>
         </div>
       </article>
 
@@ -751,8 +742,8 @@
         </div>
         <div class="project-small-caption">
           <span class="tile-tag">Airbus Helicopters</span>
-          <h3>Airbus</h3>
-          <p class="desc">Short description of the project goal, your approach, and the outcome.</p>
+          <h3>Helicopter Composite Structures</h3>
+          <p class="desc">Stress analysis of composite helicopter components — structural design and simulation in Altair HyperWorks, paired with laboratory inspection of sandwich samples for manufacturing defects.</p>
         </div>
       </article>
 
@@ -764,33 +755,18 @@
         <div class="slide active">
           <img src="images/project-7-1.jpg" alt="Replace with a photo of Project 7" onerror="this.style.display='none';">
         </div>
-        <div class="slide">
-          <img src="images/project-7-2.jpg" alt="Replace with a photo of Project 7" onerror="this.style.display='none';">
-        </div>
-        <div class="slide">
-          <img src="images/project-7-3.jpg" alt="Replace with a photo of Project 7" onerror="this.style.display='none';">
-        </div>
-        <button class="arrow prev" aria-label="Previous image">‹</button>
-        <button class="arrow next" aria-label="Next image">›</button>
-        <div class="dots">
-          <button class="dot active" aria-label="Go to image 1"></button>
-          <button class="dot" aria-label="Go to image 2"></button>
-          <button class="dot" aria-label="Go to image 3"></button>
-        </div>
       </div>
       <div class="project-caption">
         <div class="project-caption-head">
-          <h3>Caterra</h3>
+          <h3>Autonomous Weeding Robot</h3>
           <span class="tile-tag">Caterra AG</span>
         </div>
-        <p class="desc">Replace this with a 1–2 sentence description: what the project was, the problem it solved, and your role in it.</p>
+        <p class="desc">Drive train and lifting mechanism for an autonomous weeding robot — taken from concept and CAD through assembly and field testing, with navigation and safety sensors integrated for robust, compliant operation in unstructured outdoor environments.</p>
       </div>
     </article>
 
   </div>
 </section>
-
-<div class="wrap"><div class="divider">* * *</div></div>
 
 <section class="about wrap" id="about">
   <div>
@@ -799,23 +775,13 @@
   <div>
     <div class="about-body">
       <div class="about-photo">
-        <img src="images/profile.jpg" alt="Replace with your profile photo" onerror="this.style.display='none';">
+        <img src="images/profile.jpeg" alt="Replace with your profile photo" onerror="this.style.display='none';">
       </div>
       <div class="about-text">
-        <p>Replace this with a short paragraph about yourself — your background, what you're currently studying or working on, and what kind of mechatronic systems you're drawn to.</p>
-        <p>A second paragraph is optional: mention any notable achievements, teams, or competitions.</p>
+        <p>I completed my bachelor's in mechanical engineering at the Karlsruhe Institute of Technology, followed by a master's in mechanical engineering with a focus on robotics at ETH Zürich — where I'm now finishing my thesis at IfA.</p>
+        <p>I'm interested in systems that combine mechanical design with intelligent sensing and control, and work hands-on across mechanical design, embedded systems, and control.</p>
       </div>
     </div>
-    <ul class="skills-list">
-      <li>SolidWorks</li>
-      <li>Fusion 360</li>
-      <li>Altium Designer</li>
-      <li>Embedded C / C++</li>
-      <li>ROS</li>
-      <li>CNC machining</li>
-      <li>3D printing</li>
-      <li>FEA</li>
-    </ul>
   </div>
 </section>
 
@@ -823,7 +789,7 @@
   <div class="wrap footer-inner">
     <div>
       <h2>Get in touch</h2>
-      <p style="color:var(--steel); max-width:40ch;">Open to internships, collaborations, and questions about any of these builds.</p>
+      <p style="color:var(--steel); max-width:40ch;">Open to full-time roles, collaborations, and questions about any of these builds.</p>
     </div>
     <div class="links">
       <a href="mailto:margarete.breitenhuber@gmx.de">Email</a>
