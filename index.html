@@ -188,8 +188,8 @@
   .hero-content{
     position:absolute;
     z-index:2;
-    bottom:6%;
-    right:6%;
+    bottom:1%;
+    right:1%;
     max-width:44%;
     text-align:left;
     color:#F5F5F3;
@@ -257,7 +257,8 @@
   /* ---------- Projects ---------- */
 
   .projects{
-    padding:56px 0 40px;
+    padding-top:56px;
+    padding-bottom:40px;
   }
 
   .section-head{
@@ -388,6 +389,10 @@
     letter-spacing:0.06em;
   }
 
+  .tile-tag a:hover{
+    text-decoration:underline;
+  }
+
   .desc{
     color:var(--steel);
     font-size:0.9rem;
@@ -416,29 +421,45 @@
 
   .project-feature{
     width:100%;
-    max-width:860px;
+  }
+
+  .project-alt{
+    display:flex;
+    align-items:stretch;
+    gap:40px;
+    width:100%;
+  }
+
+  .project-alt.reverse{
+    flex-direction:row-reverse;
+  }
+
+  .project-media{
+    flex:1.618 1 0%;
+    min-width:0;
   }
 
   .project-feature .slide-viewport{ aspect-ratio: 16 / 9; }
 
   .project-caption{
-    margin-top:22px;
     width:100%;
+    flex:1 1 0%;
+    min-width:0;
+    border:1px solid var(--line);
+    padding:28px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
   }
 
   .project-caption-head{
     display:flex;
-    align-items:baseline;
-    justify-content:space-between;
-    gap:20px;
+    flex-direction:column;
+    gap:6px;
   }
 
   .project-caption-head h3{
     font-size:1.7rem;
-  }
-
-  .project-caption-head .tile-tag{
-    white-space:nowrap;
   }
 
   .project-caption .desc{
@@ -446,47 +467,42 @@
     max-width:none;
   }
 
-  @media (max-width:520px){
-    .project-caption-head{ flex-direction:column; gap:4px; }
-  }
-
-  /* ---- small project row ---- */
-
-  .project-row{
-    width:100%;
+  .project-facts{
+    list-style:none;
+    margin:16px 0 0;
+    padding:0;
     display:flex;
-    justify-content:center;
-    gap:28px;
-    flex-wrap:wrap;
+    flex-direction:column;
+    gap:7px;
   }
 
-  .project-small{
-    flex:1 1 320px;
-    max-width:400px;
-  }
-
-  .project-small .slide-viewport{ aspect-ratio: 4 / 3; }
-
-  .project-small .arrow{
-    width:30px;
-    height:30px;
-    font-size:0.95rem;
-  }
-
-  .project-small .arrow.prev{ left:8px; }
-  .project-small .arrow.next{ right:8px; }
-
-  .project-small-caption{
-    margin-top:14px;
-  }
-
-  .project-small-caption h3{
-    font-size:1.05rem;
-    margin:6px 0 4px;
-  }
-
-  .project-small-caption .desc{
+  .project-facts li{
     font-size:0.85rem;
+    color:var(--steel);
+    padding-left:16px;
+    position:relative;
+  }
+
+  .project-facts li::before{
+    content:"–";
+    position:absolute;
+    left:0;
+    color:var(--accent);
+  }
+
+  .project-facts li a{
+    color:var(--accent);
+    border-bottom:1px solid var(--accent);
+  }
+
+  .project-facts li a:hover{
+    color:var(--accent-bright);
+    border-color:var(--accent-bright);
+  }
+
+  @media (max-width:760px){
+    .project-alt, .project-alt.reverse{ flex-direction:column; }
+    .project-caption{ padding:20px; }
   }
 
   /* ---------- About ---------- */
@@ -573,6 +589,7 @@
 
   .footer-inner{
     display:flex;
+    align-items:flex-start;
     justify-content:space-between;
     flex-wrap:wrap;
     gap:24px;
@@ -582,6 +599,7 @@
 
   footer .links{
     display:flex;
+    align-self:flex-end;
     gap:24px;
     flex-wrap:wrap;
     font-size:0.92rem;
@@ -589,6 +607,8 @@
 
   footer .links a{
     color:var(--accent);
+    line-height:1;
+    padding-bottom:2px;
     border-bottom:1px solid var(--accent);
   }
 
@@ -622,8 +642,8 @@
       <div class="hero-scrim"></div>
       <div class="hero-content">
         <h1>Hello, I'm Margarete</h1>
-        <p>I'm curious, excited to build systems from sketch to full system.</p>
-        <p>A mechanical engineer from KIT and ETH Zürich — currently finishing my thesis at IfA — drawn to systems that combine mechanical design with intelligent sensing and control.</p>
+        <p>A mechatronics engineer, excited to take ideas from sketch to working system with a particular interest in sustainable engineering.</p>
+        <p>Educated at ETH Zürich and Karslruhe Institute of Technology, drawn to systems that combine mechanical design with intelligent sensing and control.</p>
       </div>
     </div>
   </div>
@@ -635,184 +655,230 @@
 
     <!-- Project 1 - big, featured -->
     <article class="project-feature">
-      <div class="slide-viewport">
-        <div class="slide active">
-          <img src="images/project-1-1.jpg" alt="Replace with a photo of Project 1" onerror="this.style.display='none';">
+      <div class="project-alt">
+        <div class="project-media">
+          <div class="slide-viewport">
+            <div class="slide active">
+              <img src="images/project-1-1.jpg" alt="Replace with a photo of Project 1" onerror="this.style.display='none';">
+            </div>
+            <div class="slide">
+              <video src="images/project-1-2.mov" muted loop playsinline onerror="this.style.display='none';"></video>
+            </div>
+            <div class="slide">
+              <img src="images/project-1-3.png" alt="Replace with a photo of Project 1" onerror="this.style.display='none';">
+            </div>
+            <button class="arrow prev" aria-label="Previous image">‹</button>
+            <button class="arrow next" aria-label="Next image">›</button>
+            <div class="dots">
+              <button class="dot active" aria-label="Go to image 1"></button>
+              <button class="dot" aria-label="Go to image 2"></button>
+              <button class="dot" aria-label="Go to image 3"></button>
+            </div>
+          </div>
         </div>
-        <div class="slide">
-          <video src="images/project-1-2.mov" muted loop playsinline onerror="this.style.display='none';"></video>
+        <div class="project-caption">
+          <div class="project-caption-head">
+            <h3>Winner of European-wide Robotics Challenge</h3>
+            <span class="tile-tag">Neura Robotics GmbH</span>
+          </div>
+          <p class="desc">Collaborative robot to assist visually impaired users — custom soft gripper and tactile sensors for reliable, adaptive grasping, paired with vision-language AI for semantic object detection and grip planning.</p>
+          <ul class="project-facts">
+            <li>1st place, NEURA Robotics Challenge 2025</li>
+            <li>Self-organized team of 5 students, extracurricular</li>
+          </ul>
         </div>
-        <div class="slide">
-          <img src="images/project-1-3.png" alt="Replace with a photo of Project 1" onerror="this.style.display='none';">
-        </div>
-        <button class="arrow prev" aria-label="Previous image">‹</button>
-        <button class="arrow next" aria-label="Next image">›</button>
-        <div class="dots">
-          <button class="dot active" aria-label="Go to image 1"></button>
-          <button class="dot" aria-label="Go to image 2"></button>
-          <button class="dot" aria-label="Go to image 3"></button>
-        </div>
-      </div>
-      <div class="project-caption">
-        <div class="project-caption-head">
-          <h3>Winner of European-wide Robotics Challenge</h3>
-          <span class="tile-tag">Neura Robotics GmbH</span>
-        </div>
-        <p class="desc">Collaborative robot to assist visually impaired users — custom soft gripper and tactile sensors for reliable, adaptive grasping, paired with vision-language AI for semantic object detection and grip planning.</p>
       </div>
     </article>
 
     <!-- Project 2 - big, featured -->
     <article class="project-feature">
-      <div class="slide-viewport contain-slides">
-        <div class="slide active">
-          <img src="images/project-2-1.png" alt="Replace with a photo of Project 2" onerror="this.style.display='none';">
+      <div class="project-alt reverse">
+        <div class="project-media">
+          <div class="slide-viewport contain-slides">
+            <div class="slide active">
+              <img src="images/project-2-1.png" alt="Replace with a photo of Project 2" onerror="this.style.display='none';">
+            </div>
+            <div class="slide portrait">
+              <img src="images/project-2-2.png" alt="Replace with a photo of Project 2" onerror="this.style.display='none';">
+            </div>
+            <button class="arrow prev" aria-label="Previous image">‹</button>
+            <button class="arrow next" aria-label="Next image">›</button>
+            <div class="dots">
+              <button class="dot active" aria-label="Go to image 1"></button>
+              <button class="dot" aria-label="Go to image 2"></button>
+            </div>
+          </div>
         </div>
-        <div class="slide portrait">
-          <img src="images/project-2-2.png" alt="Replace with a photo of Project 2" onerror="this.style.display='none';">
+        <div class="project-caption">
+          <div class="project-caption-head">
+            <h3>AgroScan — Soil Carbon Monitoring</h3>
+            <span class="tile-tag">ETH Zürich</span>
+          </div>
+          <p class="desc">Open-source web platform combining remote-sensing-based soil organic carbon prediction with visual analytics — giving farmers field-level SOC/SOM estimates and crop-rotation context to interpret long-term soil health trends and guide adaptive field management.</p>
+          <ul class="project-facts">
+            <li>Validated through farmer interviews</li>
+            <li>Self-initiated, supervised by <a href="https://ivia.ethz.ch/" target="_blank" rel="noopener">IVIA ETH</a></li>
+          </ul>
+          <p class="pub-note">VIS4Climate 2026 · Short Paper · <a href="https://github.com/mbreitenhuber/soil_health_monitoring" target="_blank" rel="noopener">View code</a></p>
         </div>
-        <button class="arrow prev" aria-label="Previous image">‹</button>
-        <button class="arrow next" aria-label="Next image">›</button>
-        <div class="dots">
-          <button class="dot active" aria-label="Go to image 1"></button>
-          <button class="dot" aria-label="Go to image 2"></button>
-        </div>
-      </div>
-      <div class="project-caption">
-        <div class="project-caption-head">
-          <h3>AgroScan — Soil Carbon Monitoring</h3>
-          <span class="tile-tag">ETH Zürich</span>
-        </div>
-        <p class="desc">Open-source web platform combining remote-sensing-based soil organic carbon prediction with visual analytics — giving farmers field-level SOC/SOM estimates and crop-rotation context to interpret long-term soil health trends and guide adaptive field management.</p>
-        <p class="pub-note">VIS4Climate 2026 · Short Paper · <a href="https://github.com/mbreitenhuber/soil_health_monitoring" target="_blank" rel="noopener">View code</a></p>
       </div>
     </article>
 
     <!-- Project 3 - big, featured -->
     <article class="project-feature">
-      <div class="slide-viewport contain-slides">
-        <div class="slide active">
-          <img src="images/project-3-1.png" alt="Replace with a photo of Project 3" onerror="this.style.display='none';">
+      <div class="project-alt">
+        <div class="project-media">
+          <div class="slide-viewport contain-slides">
+            <div class="slide active">
+              <img src="images/project-3-1.png" alt="Replace with a photo of Project 3" onerror="this.style.display='none';">
+            </div>
+            <div class="slide portrait">
+              <img src="images/project-3-2.jpeg" alt="Replace with a photo of Project 3" onerror="this.style.display='none';">
+            </div>
+            <button class="arrow prev" aria-label="Previous image">‹</button>
+            <button class="arrow next" aria-label="Next image">›</button>
+            <div class="dots">
+              <button class="dot active" aria-label="Go to image 1"></button>
+              <button class="dot" aria-label="Go to image 2"></button>
+            </div>
+          </div>
         </div>
-        <div class="slide portrait">
-          <img src="images/project-3-2.jpeg" alt="Replace with a photo of Project 3" onerror="this.style.display='none';">
+        <div class="project-caption">
+          <div class="project-caption-head">
+            <h3>Data-Driven Sensor Placement Optimization</h3>
+            <span class="tile-tag">National University of Singapore</span>
+          </div>
+          <p class="desc">Sensor placement optimization for a multilayer soft robotic skin — PCA-based deformation subspace identification paired with greedy selection algorithms, validated on a custom tendon-driven silicone arm with MuJoCo simulation and trajectory-tracking control for non-linear soft systems.</p>
+          <ul class="project-facts">
+            <li>Solo project, completed during a research stay at NUS</li>
+            <li>Supervised by Dr. Matteo Lo Preti and Prof. Cecilia Laschi</li>
+          </ul>
+          <p class="pub-note">RoboSoft 2026 · Extended Abstract · <a href="https://github.com/mbreitenhuber/soft_robot_optimization" target="_blank" rel="noopener">View code</a></p>
         </div>
-        <button class="arrow prev" aria-label="Previous image">‹</button>
-        <button class="arrow next" aria-label="Next image">›</button>
-        <div class="dots">
-          <button class="dot active" aria-label="Go to image 1"></button>
-          <button class="dot" aria-label="Go to image 2"></button>
-        </div>
-      </div>
-      <div class="project-caption">
-        <div class="project-caption-head">
-          <h3>Data-Driven Sensor Placement Optimization</h3>
-          <span class="tile-tag">National University of Singapore</span>
-        </div>
-        <p class="desc">Sensor placement optimization for a multilayer soft robotic skin — PCA-based deformation subspace identification paired with greedy selection algorithms, validated on a custom tendon-driven silicone arm with MuJoCo simulation and trajectory-tracking control for non-linear soft systems.</p>
-        <p class="pub-note">RoboSoft 2026 · Extended Abstract · <a href="https://github.com/mbreitenhuber/soft_robot_optimization" target="_blank" rel="noopener">View code</a></p>
       </div>
     </article>
 
     <!-- Project 4 - big, featured -->
     <article class="project-feature">
-      <div class="slide-viewport contain-slides">
-        <div class="slide active">
-          <img src="images/project-4-1.png" alt="Replace with a photo of Project 4" onerror="this.style.display='none';">
+      <div class="project-alt reverse">
+        <div class="project-media">
+          <div class="slide-viewport contain-slides">
+            <div class="slide active">
+              <img src="images/project-4-1.png" alt="Replace with a photo of Project 4" onerror="this.style.display='none';">
+            </div>
+            <div class="slide portrait">
+              <img src="images/project-4-2.jpg" alt="Replace with a photo of Project 4" onerror="this.style.display='none';">
+            </div>
+            <div class="slide">
+              <img src="images/project-4-3.jpg" alt="Replace with a photo of Project 4" onerror="this.style.display='none';">
+            </div>
+            <div class="slide">
+              <img src="images/project-4-4.jpg" alt="Replace with a photo of Project 4" onerror="this.style.display='none';">
+            </div>
+            <button class="arrow prev" aria-label="Previous image">‹</button>
+            <button class="arrow next" aria-label="Next image">›</button>
+            <div class="dots">
+              <button class="dot active" aria-label="Go to image 1"></button>
+              <button class="dot" aria-label="Go to image 2"></button>
+              <button class="dot" aria-label="Go to image 3"></button>
+              <button class="dot" aria-label="Go to image 4"></button>
+            </div>
+          </div>
         </div>
-        <div class="slide portrait">
-          <img src="images/project-4-2.jpg" alt="Replace with a photo of Project 4" onerror="this.style.display='none';">
+        <div class="project-caption">
+          <div class="project-caption-head">
+            <h3>Public Bike Pump</h3>
+            <span class="tile-tag">ZhdK</span>
+          </div>
+          <p class="desc">Public, vandalism-resistant mechanical bike pump designed to work reliably and stay fun to use — piston and scroll compressor concepts compared through prototyping, with crank position, column height, and grip geometry refined through user testing and validated with FEM simulation for force and pressure loads.</p>
+          <ul class="project-facts">
+            <li>Interdisciplinary team of 4 (industrial design and mechanical engineering)</li>
+            <li>Focus on developing prototyping skills</li>
+          </ul>
         </div>
-        <div class="slide">
-          <img src="images/project-4-3.jpg" alt="Replace with a photo of Project 4" onerror="this.style.display='none';">
-        </div>
-        <div class="slide">
-          <img src="images/project-4-4.jpg" alt="Replace with a photo of Project 4" onerror="this.style.display='none';">
-        </div>
-        <button class="arrow prev" aria-label="Previous image">‹</button>
-        <button class="arrow next" aria-label="Next image">›</button>
-        <div class="dots">
-          <button class="dot active" aria-label="Go to image 1"></button>
-          <button class="dot" aria-label="Go to image 2"></button>
-          <button class="dot" aria-label="Go to image 3"></button>
-          <button class="dot" aria-label="Go to image 4"></button>
-        </div>
-      </div>
-      <div class="project-caption">
-        <div class="project-caption-head">
-          <h3>Public Bike Pump</h3>
-          <span class="tile-tag">ZhdK</span>
-        </div>
-        <p class="desc">Public, vandalism-resistant mechanical bike pump designed to work reliably and stay fun to use — piston and scroll compressor concepts compared through prototyping, with crank position, column height, and grip geometry refined through user testing and validated with FEM simulation for force and pressure loads.</p>
       </div>
     </article>
 
-    <!-- Projects 5-6 - small row -->
-    <div class="project-row">
-
-      <article class="project-small">
-        <div class="slide-viewport">
-          <div class="slide active">
-            <img src="images/project-5-1.jpeg" alt="Replace with a photo of Project 5" onerror="this.style.display='none';">
-          </div>
-          <div class="slide">
-            <img src="images/project-5-2.jpeg" alt="Replace with a photo of Project 5" onerror="this.style.display='none';">
-          </div>
-          <button class="arrow prev" aria-label="Previous image">‹</button>
-          <button class="arrow next" aria-label="Next image">›</button>
-          <div class="dots">
-            <button class="dot active" aria-label="Go to image 1"></button>
-            <button class="dot" aria-label="Go to image 2"></button>
-          </div>
-        </div>
-        <div class="project-small-caption">
-          <span class="tile-tag">Karlsruhe Institute of Technology</span>
-          <h3>Award-Winning Hyperloop System</h3>
-          <p class="desc">Suspension and braking systems for a full-scale hyperloop pod — electromagnets, brakes, and guidance components developed as technical lead, winning the award for best levitating guidance system at European Hyperloop Week 2023.</p>
-        </div>
-      </article>
-
-      <article class="project-small">
-        <div class="slide-viewport">
-          <div class="slide active">
-            <img src="images/project-6-1.jpg" alt="Replace with a photo of Project 6" onerror="this.style.display='none';">
-          </div>
-          <div class="slide">
-            <img src="images/project-6-2.jpg" alt="Replace with a photo of Project 6" onerror="this.style.display='none';">
-          </div>
-          <div class="slide">
-            <img src="images/project-6-3.jpg" alt="Replace with a photo of Project 6" onerror="this.style.display='none';">
-          </div>
-          <button class="arrow prev" aria-label="Previous image">‹</button>
-          <button class="arrow next" aria-label="Next image">›</button>
-          <div class="dots">
-            <button class="dot active" aria-label="Go to image 1"></button>
-            <button class="dot" aria-label="Go to image 2"></button>
-            <button class="dot" aria-label="Go to image 3"></button>
-          </div>
-        </div>
-        <div class="project-small-caption">
-          <span class="tile-tag">Airbus Helicopters</span>
-          <h3>Helicopter Composite Structures</h3>
-          <p class="desc">Stress analysis of composite helicopter components — structural design and simulation in Altair HyperWorks, paired with laboratory inspection of sandwich samples for manufacturing defects.</p>
-        </div>
-      </article>
-
-    </div>
-
-    <!-- Project 7 - big, featured -->
+    <!-- Project 5 - big, featured (Caterra) -->
     <article class="project-feature">
-      <div class="slide-viewport">
-        <div class="slide active">
-          <img src="images/project-7-1.jpg" alt="Replace with a photo of Project 7" onerror="this.style.display='none';">
+      <div class="project-alt">
+        <div class="project-media">
+          <div class="slide-viewport">
+            <div class="slide active">
+              <img src="images/project-7-1.jpg" alt="Replace with a photo of Project 5" onerror="this.style.display='none';">
+            </div>
+          </div>
+        </div>
+        <div class="project-caption">
+          <div class="project-caption-head">
+            <h3>Autonomous Weeding Robot</h3>
+            <span class="tile-tag"><a href="https://caterra.ch/" target="_blank" rel="noopener">Caterra AG</a></span>
+          </div>
+          <p class="desc">Drive train and lifting mechanism for an autonomous weeding robot — taken from concept and CAD through assembly and field testing, with navigation and safety sensors integrated for robust, compliant operation in unstructured outdoor environments.</p>
+          <ul class="project-facts">
+            <li>Robotics Engineer, Intern &amp; Working Student</li>
+            <li>Early-stage startup — broad ownership from concept to field testing</li>
+          </ul>
         </div>
       </div>
-      <div class="project-caption">
-        <div class="project-caption-head">
-          <h3>Autonomous Weeding Robot</h3>
-          <span class="tile-tag">Caterra AG</span>
+    </article>
+
+    <!-- Project 6 - big, featured (Hyperloop) -->
+    <article class="project-feature">
+      <div class="project-alt reverse">
+        <div class="project-media">
+          <div class="slide-viewport">
+            <div class="slide active">
+              <img src="images/project-5-1.jpeg" alt="Replace with a photo of Project 6" onerror="this.style.display='none';">
+            </div>
+            <div class="slide">
+              <img src="images/project-5-2.jpeg" alt="Replace with a photo of Project 6" onerror="this.style.display='none';">
+            </div>
+            <div class="slide">
+              <img src="images/project-5-3.png" alt="Replace with a photo of Project 6" onerror="this.style.display='none';">
+            </div>
+            <button class="arrow prev" aria-label="Previous image">‹</button>
+            <button class="arrow next" aria-label="Next image">›</button>
+            <div class="dots">
+              <button class="dot active" aria-label="Go to image 1"></button>
+              <button class="dot" aria-label="Go to image 2"></button>
+              <button class="dot" aria-label="Go to image 3"></button>
+            </div>
+          </div>
         </div>
-        <p class="desc">Drive train and lifting mechanism for an autonomous weeding robot — taken from concept and CAD through assembly and field testing, with navigation and safety sensors integrated for robust, compliant operation in unstructured outdoor environments.</p>
+        <div class="project-caption">
+          <div class="project-caption-head">
+            <h3>Award-Winning Hyperloop System</h3>
+            <span class="tile-tag">Karlsruhe Institute of Technology</span>
+          </div>
+          <p class="desc">Suspension and braking systems for a full-scale hyperloop pod — electromagnets, brakes, and guidance components developed as technical lead, winning the award for best levitating guidance system at European Hyperloop Week 2023.</p>
+          <ul class="project-facts">
+            <li>Extracurricular, one-year project</li>
+          </ul>
+        </div>
+      </div>
+    </article>
+
+    <!-- Project 7 - big, featured (Airbus) -->
+    <article class="project-feature">
+      <div class="project-alt">
+        <div class="project-media">
+          <div class="slide-viewport">
+            <div class="slide active">
+              <img src="images/project-6-1.png" alt="Replace with a photo of Project 7" onerror="this.style.display='none';">
+            </div>
+          </div>
+        </div>
+        <div class="project-caption">
+          <div class="project-caption-head">
+            <h3>Helicopter Composite Structures</h3>
+            <span class="tile-tag">Airbus Helicopters</span>
+          </div>
+          <p class="desc">Stress analysis of composite helicopter components — structural design and simulation in Altair HyperWorks, paired with laboratory inspection of sandwich samples for manufacturing defects.</p>
+          <ul class="project-facts">
+            <li>Stress Engineer Intern</li>
+          </ul>
+        </div>
       </div>
     </article>
 
