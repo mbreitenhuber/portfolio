@@ -158,12 +158,53 @@
   /* ---------- Hero ---------- */
 
   .hero{
-    padding:91px 0 45px;
+    padding:44px 0 45px;
     border-bottom:1px solid var(--line);
   }
 
+  .hero-photo{
+    position:relative;
+    width:100%;
+    aspect-ratio: 16 / 9;
+    overflow:hidden;
+    border-radius:4px;
+    background:
+      repeating-linear-gradient(135deg, #ECEDE8, #ECEDE8 10px, #F2F3EE 10px, #F2F3EE 20px);
+  }
+
+  .hero-photo img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+  }
+
+  .hero-scrim{
+    position:absolute;
+    inset:0;
+    background:linear-gradient(100deg, transparent 30%, rgba(10,11,13,0.72) 92%);
+    pointer-events:none;
+  }
+
   .hero-content{
-    max-width:920px;
+    position:absolute;
+    z-index:2;
+    bottom:6%;
+    right:6%;
+    max-width:44%;
+    text-align:left;
+    color:#F5F5F3;
+  }
+
+  @media (max-width:760px){
+    .hero-content{
+      position:static;
+      transform:none;
+      max-width:100%;
+      right:auto;
+      color:var(--ink);
+      margin-top:24px;
+    }
+    .hero-scrim{ display:none; }
   }
 
   .hero .eyebrow{
@@ -177,18 +218,24 @@
   }
 
   .hero h1{
-    font-size:clamp(2.1rem, 5vw, 3.6rem);
-    margin-bottom:32px;
+    font-size:clamp(1.8rem, 3.4vw, 2.6rem);
+    margin-bottom:20px;
   }
 
-  .hero h1 .dim{ color:var(--steel); }
-  .hero h1 .accent-text{ color:var(--accent); }
+  .hero h1 .dim{ color:rgba(245,245,243,0.7); }
+  .hero h1 .accent-text{ color:var(--accent-bright); }
 
   .hero p{
-    font-size:1.1rem;
-    color:#3B3F44;
-    max-width:540px;
-    margin-bottom:36px;
+    font-size:0.98rem;
+    color:rgba(245,245,243,0.88);
+    max-width:100%;
+    margin-bottom:14px;
+  }
+
+  @media (max-width:760px){
+    .hero h1 .dim{ color:var(--steel); }
+    .hero h1 .accent-text{ color:var(--accent); }
+    .hero p{ color:#3B3F44; }
   }
 
   .hero-meta{
@@ -241,10 +288,8 @@
   .slide-viewport{
     position:relative;
     width:100%;
-    background:
-      repeating-linear-gradient(135deg, #ECEDE8, #ECEDE8 10px, #F2F3EE 10px, #F2F3EE 20px);
+    background:var(--paper);
     overflow:hidden;
-    border:1px solid var(--line);
   }
 
   .slide{
@@ -262,7 +307,7 @@
   }
 
   .slide-viewport.contain-slides{
-    background:#FFFFFF;
+    background:var(--paper);
   }
 
   .contain-slides .slide img, .contain-slides .slide video{
@@ -565,16 +610,22 @@
     <div class="brand">Margarete Breitenhuber<span>Mechatronics engineer</span></div>
     <nav>
       <a href="#work">Work</a>
-      <a href="#about">About</a>
       <a href="#contact">Contact</a>
     </nav>
   </div>
 </header>
 
 <section class="hero">
-  <div class="wrap hero-content">
-    <h1>Mechanics, electronics, code. <span class="dim">Sketch to working system.</span></h1>
-    <p>A selection of projects I worked on 2022-2026.</p>
+  <div class="wrap">
+    <div class="hero-photo">
+      <img src="images/profile.jpeg" alt="Replace with your profile photo" onerror="this.style.display='none';">
+      <div class="hero-scrim"></div>
+      <div class="hero-content">
+        <h1>Hello, I'm Margarete</h1>
+        <p>I'm curious, excited to build systems from sketch to full system.</p>
+        <p>A mechanical engineer from KIT and ETH Zürich — currently finishing my thesis at IfA — drawn to systems that combine mechanical design with intelligent sensing and control.</p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -614,10 +665,10 @@
     <!-- Project 2 - big, featured -->
     <article class="project-feature">
       <div class="slide-viewport contain-slides">
-        <div class="slide active natural-size">
-          <img src="images/project-2-1.jpg" alt="Replace with a photo of Project 2" onerror="this.style.display='none';">
+        <div class="slide active">
+          <img src="images/project-2-1.png" alt="Replace with a photo of Project 2" onerror="this.style.display='none';">
         </div>
-        <div class="slide natural-size">
+        <div class="slide portrait">
           <img src="images/project-2-2.png" alt="Replace with a photo of Project 2" onerror="this.style.display='none';">
         </div>
         <button class="arrow prev" aria-label="Previous image">‹</button>
@@ -643,7 +694,7 @@
         <div class="slide active">
           <img src="images/project-3-1.png" alt="Replace with a photo of Project 3" onerror="this.style.display='none';">
         </div>
-        <div class="slide natural-size">
+        <div class="slide portrait">
           <img src="images/project-3-2.jpeg" alt="Replace with a photo of Project 3" onerror="this.style.display='none';">
         </div>
         <button class="arrow prev" aria-label="Previous image">‹</button>
@@ -669,7 +720,7 @@
         <div class="slide active">
           <img src="images/project-4-1.png" alt="Replace with a photo of Project 4" onerror="this.style.display='none';">
         </div>
-        <div class="slide natural-size">
+        <div class="slide portrait">
           <img src="images/project-4-2.jpg" alt="Replace with a photo of Project 4" onerror="this.style.display='none';">
         </div>
         <div class="slide">
@@ -716,7 +767,7 @@
         </div>
         <div class="project-small-caption">
           <span class="tile-tag">Karlsruhe Institute of Technology</span>
-          <h3>Award-Winning Levitation System</h3>
+          <h3>Award-Winning Hyperloop System</h3>
           <p class="desc">Suspension and braking systems for a full-scale hyperloop pod — electromagnets, brakes, and guidance components developed as technical lead, winning the award for best levitating guidance system at European Hyperloop Week 2023.</p>
         </div>
       </article>
@@ -768,23 +819,6 @@
   </div>
 </section>
 
-<section class="about wrap" id="about">
-  <div>
-    <h2>About</h2>
-  </div>
-  <div>
-    <div class="about-body">
-      <div class="about-photo">
-        <img src="images/profile.jpeg" alt="Replace with your profile photo" onerror="this.style.display='none';">
-      </div>
-      <div class="about-text">
-        <p>I completed my bachelor's in mechanical engineering at the Karlsruhe Institute of Technology, followed by a master's in mechanical engineering with a focus on robotics at ETH Zürich — where I'm now finishing my thesis at IfA.</p>
-        <p>I'm interested in systems that combine mechanical design with intelligent sensing and control, and work hands-on across mechanical design, embedded systems, and control.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
 <footer id="contact">
   <div class="wrap footer-inner">
     <div>
@@ -806,31 +840,6 @@
       var slides = Array.prototype.slice.call(viewport.querySelectorAll('.slide'));
       var dots = Array.prototype.slice.call(viewport.querySelectorAll('.dot'));
       var index = 0;
-      var fitsToImage = viewport.classList.contains('contain-slides');
-
-      function fitViewport(slide){
-        var media = slide.querySelector('img, video');
-        if(!media) return;
-
-        function applySize(){
-          var w = media.tagName === 'VIDEO' ? media.videoWidth : media.naturalWidth;
-          var h = media.tagName === 'VIDEO' ? media.videoHeight : media.naturalHeight;
-          if(!w || !h) return;
-          var maxW = viewport.parentElement.clientWidth;
-          var maxH = Math.min(640, window.innerHeight * 0.75);
-          var scale = Math.min(maxW / w, maxH / h);
-          viewport.style.width = Math.round(w * scale) + 'px';
-          viewport.style.height = Math.round(h * scale) + 'px';
-          viewport.style.margin = '0 auto';
-        }
-
-        var ready = media.tagName === 'VIDEO' ? media.readyState >= 1 : media.complete;
-        if(ready){ applySize(); }
-        else {
-          var evt = media.tagName === 'VIDEO' ? 'loadedmetadata' : 'load';
-          media.addEventListener(evt, applySize, { once:true });
-        }
-      }
 
       function show(i){
         index = (i + slides.length) % slides.length;
@@ -844,21 +853,6 @@
           }
         });
         dots.forEach(function(d, idx){ d.classList.toggle('active', idx === index); });
-        if(fitsToImage){
-          if(slides[index].classList.contains('natural-size')){
-            fitViewport(slides[index]);
-          } else {
-            viewport.style.width = '';
-            viewport.style.height = '';
-            viewport.style.margin = '';
-          }
-        }
-      }
-
-      if(fitsToImage){
-        window.addEventListener('resize', function(){
-          if(slides[index].classList.contains('natural-size')){ fitViewport(slides[index]); }
-        });
       }
 
       var prev = viewport.querySelector('.arrow.prev');
